@@ -1,11 +1,15 @@
 package com.example.Entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Message {
@@ -16,8 +20,14 @@ public class Message {
 
     private String content;
 
-    private Integer parentID;
+    @OneToOne
+    @JoinColumn(name = "parentID")
+    private Message parentMessage;
     
+    @OneToMany
+    @JoinColumn(name = "parentID") // we need to duplicate the physical information
+    private List<Message> childMessages;
+        
     private Integer likes;
     
     private Date timestamp;
@@ -41,12 +51,20 @@ public class Message {
 		this.content = content;
 	}
 
-	public Integer getParentID() {
-		return parentID;
+	public Message getParentMessage() {
+		return parentMessage;
 	}
 
-	public void setParentID(Integer parentID) {
-		this.parentID = parentID;
+	public void setParentMessage(Message parentMessage) {
+		this.parentMessage = parentMessage;
+	}
+
+	public List<Message> getChildMessages() {
+		return childMessages;
+	}
+
+	public void setChildMessages(List<Message> childMessages) {
+		this.childMessages = childMessages;
 	}
 
 	public Integer getLikes() {
