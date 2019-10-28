@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+   <MessageTree v-bind:messages="messages"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MessageTree from './components/MessageTree.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    MessageTree
   }
 }
 </script>
