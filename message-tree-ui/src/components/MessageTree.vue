@@ -1,8 +1,18 @@
 <template>
-    <div id="messageBoard">
+    <div id="messageBoard" class="container">
         <h2>Message Tree Board</h2>
-        <div>
-            {{messages}}
+        <div class="container">
+            <table class="table">
+                <thead>
+                    Message
+                </thead>
+                <tbody>
+                    <tr v-for="msg in messages" v-bind:key="msg.id">
+                        <td>{{msg.context}}</td>
+                        <td>{{msg.timestamp}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
@@ -10,10 +20,9 @@
 <script>
     import api from './backend-api';
     export default {
-        el: "messageBoard",
         name: "MessageTree",
         data() {
-            return this.messages = this.allMessages();
+            return this.messages = [];
         },
         created(){
             this.allMessages();
@@ -23,12 +32,12 @@
             {
                 api.getAll()
                     .then(response => {
-                        this.$log.debug("Data loaded: ", response.data)
+                        this.console.log("Data loaded: ", response.data)
                         this.messages = response.data
                     })
                     .catch(err => {
-                        this.$log.debug(err)
-                        this.err = "Failed to load messages"
+                        this.console.log(err)
+                        err = "Failed to load messages"
                     })
                     .finally(() => this.loading = false);
             },
