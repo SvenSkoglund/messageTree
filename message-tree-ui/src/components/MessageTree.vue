@@ -31,23 +31,22 @@
     import api from './backend-api';
     export default {
         name: "MessageTree",
+        props: ['messages'],
         data() {
             return this.messages = [];
         },
         created(){
-            this.allMessages();
+            this.messages = this.allMessages();
         },
         methods : {
             allMessages()
             {
                 api.getAll()
                     .then(response => {
-                        this.console.log("Data loaded: ", response.data)
                         this.messages = response.data
                     })
                     .catch(err => {
-                        this.console.log(err)
-                        err = "Failed to load messages"
+                        return err;
                     })
                     .finally(() => this.loading = false);
             },
