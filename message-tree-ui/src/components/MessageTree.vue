@@ -31,7 +31,7 @@
     import api from './backend-api';
     export default {
         name: "MessageTree",
-        props: ['messages'],
+        props: ['messages', 'message', 'showAddMsgForm'],
         data() {
             return this.messages = [];
         },
