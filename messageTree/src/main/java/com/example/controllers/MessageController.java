@@ -22,7 +22,7 @@ import com.example.services.MessageService;
 
 // Configures the app to accept all traffic from 4200 because
 // Angular runs on a separate server (port 4200)
-@CrossOrigin({ "*", "http://localhost:4200" })
+@CrossOrigin({ "*", "http://localhost:9000" })
 @RestController
 @RequestMapping("api")
 public class MessageController {
