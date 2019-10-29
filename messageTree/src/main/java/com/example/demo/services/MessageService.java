@@ -1,8 +1,8 @@
-package com.example.services;
+package com.example.demo.services;
 
 import java.util.List;
 
-import com.example.entities.Message;
+import com.example.demo.entities.Message;
 
 public interface MessageService {
 

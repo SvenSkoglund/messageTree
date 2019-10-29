@@ -1,9 +1,5 @@
-package com.example.controllers;
+package com.example.demo.controllers;
 
-//USER CONTROLLER WORKS DO NOT TOUCH UNTIL NEEDED FOR SECURITY
-//ADDED SECURITY gc on 6/4
-
-import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.entities.Message;
-import com.example.services.MessageService;
+import com.example.demo.entities.Message;
+import com.example.demo.services.MessageService;
 
 // Configures the app to accept all traffic from 4200 because
 // Angular runs on a separate server (port 4200)
@@ -31,26 +27,24 @@ public class MessageController {
 	private MessageService messageService;
 
 	@RequestMapping(path = "messages", method = RequestMethod.GET)
-	public List<Message> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+	public List<Message> index(HttpServletRequest req, HttpServletResponse res) {
 		return messageService.index();
 	}
 
 	@RequestMapping(path = "message", method = RequestMethod.POST)
-	public Message create(HttpServletRequest req, HttpServletResponse res, @RequestBody Message message,
-			Principal principal) {
+	public Message create(HttpServletRequest req, HttpServletResponse res, @RequestBody Message message) {
 		return messageService.create(message);
 	}
 
 	// PUT users/{id} WORKS
 	@RequestMapping(path = "message", method = RequestMethod.PUT)
-	public Message update(HttpServletRequest req, HttpServletResponse res, @RequestBody Message message,
-			Principal principal) {
+	public Message update(HttpServletRequest req, HttpServletResponse res, @RequestBody Message message) {
 		return messageService.update(message);
 	}
 
 	// DELETE users/{id}
 	@RequestMapping(path = "message/{id}", method = RequestMethod.DELETE)
-	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
+	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
 		messageService.destroy(id);
 
 	}
