@@ -9,7 +9,7 @@ const instance = axios.create({
 
 export default {
 
-    createNew: (text, parentId) => instance.post('messages', {message: text, parentId: parentId}),
+    createNew: (msg) => instance.post('messages', {message: msg.text, parentId: msg.parentId}),
 
     getAll: () => instance.get('messages', {
         transformResponse: [function (data) {
