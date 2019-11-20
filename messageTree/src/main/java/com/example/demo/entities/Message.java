@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity // This tells Hibernate to make a table out of this class
 public class Message {
 
@@ -22,6 +24,7 @@ public class Message {
 
     @OneToOne
     @JoinColumn(name = "parentID")
+    @JsonIgnore
     private Message parentMessage;
     
     @OneToMany
