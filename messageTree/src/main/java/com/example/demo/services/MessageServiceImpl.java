@@ -17,7 +17,7 @@ public class MessageServiceImpl implements MessageService {
 	
 	@Override
 	public List<Message> index() {
-		return messageRepo.findAll();
+		return messageRepo.findByParentMessage(null);
 	}
 
 	@Override

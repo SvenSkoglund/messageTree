@@ -1,1 +1,6 @@
-<p>{{content}}</p>
+<p>{{message.content}}</p>
+<div *ngIf="hasChildMessages">
+    <div ngFor="let childMessage of message.childMessages">
+        <app-message [message]="childMessage"></app-message>
+    </div>
+</div>

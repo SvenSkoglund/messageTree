@@ -1,5 +1,7 @@
 <p>home works!</p>
 <div *ngFor="let message of messageTree">
-        {{message.content}}
-        ---{{message.childMessages}}
+        <div>
+                <app-message [message]="message"></app-message>
+                <!-- {{message.content}} -->
+        </div>
 </div>
