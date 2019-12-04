@@ -1,6 +1,26 @@
-<p>{{message.content}}</p>
-<div *ngIf="hasChildMessages">
-    <div ngFor="let childMessage of message.childMessages">
-        <app-message [message]="childMessage"></app-message>
+<div class="container" style="border: solid black; padding: 1%;">
+    <div class="row" *ngIf="message.id != null">
+        <div class="col-12">
+            <p>{{message.content}}</p>
+            <button (click)="reply()">Reply</button>
+        </div>
     </div>
+    <div class="row" *ngIf="message.id == null">
+
+        <div class="col-12">
+            <input type="text" class="replyInput" [(ngModel)]="message.content"></div>
+        <div class="col-12">
+            <br>
+            <button (click)="saveReply()">Save</button>
+        </div>
+
+    </div>
+    <div class="row" *ngFor="let Cmessage of message.childMessages">
+        <div class="col-1">
+        </div>
+        <div class="col-11">
+            <app-message [message]="Cmessage"></app-message>
+        </div>
+    </div>
+
 </div>

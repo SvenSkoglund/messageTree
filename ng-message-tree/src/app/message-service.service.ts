@@ -34,7 +34,7 @@ export class MessageService {
 
   create(message: Message) {
     console.log('in user service');
-    return this.http.post<MessageComponent>(this.url + 'message', message)
+    return this.http.post<Message>(this.url + 'message', message)
       .pipe(
         catchError((err: any) => {
           console.log(err);

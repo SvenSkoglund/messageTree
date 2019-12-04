@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,21 +14,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Message {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String content;
 
-	@OneToOne
-	@JoinColumn(name = "parentID")
-	@JsonIgnore
-	private Message parentMessage;
+//	@OneToOne
+//	@JoinColumn(name = "parentID")
+//	@JsonIgnore
+//	private Message parentMessage;
 
 	@OneToMany
 	@JoinColumn(name = "parentID") // we need to duplicate the physical information
@@ -36,6 +36,9 @@ public class Message {
 	private Integer likes;
 
 	private Date timestamp;
+	
+	@Column(name="parentID")
+	private Integer parentID;
 
 //	@JsonProperty
 //	private Boolean hasParent;
@@ -56,13 +59,13 @@ public class Message {
 		this.content = content;
 	}
 
-	public Message getParentMessage() {
-		return parentMessage;
-	}
-
-	public void setParentMessage(Message parentMessage) {
-		this.parentMessage = parentMessage;
-	}
+//	public Message getParentMessage() {
+//		return parentMessage;
+//	}
+//
+//	public void setParentMessage(Message parentMessage) {
+//		this.parentMessage = parentMessage;
+//	}
 
 	public List<Message> getChildMessages() {
 		return childMessages;
@@ -89,6 +92,14 @@ public class Message {
 
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	public Integer getParentID() {
+		return parentID;
+	}
+
+	public void setParentID(Integer parentID) {
+		this.parentID = parentID;
 	}
 
 }

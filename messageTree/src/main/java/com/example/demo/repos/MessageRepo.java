@@ -10,6 +10,6 @@ import com.example.demo.entities.Message;
 @Repository
 public interface MessageRepo extends JpaRepository<Message, Integer> {
 
-	List<Message> findByParentMessage(Message parentMessage);
+	List<Message> findByParentID(Integer parentID);
 
 }
